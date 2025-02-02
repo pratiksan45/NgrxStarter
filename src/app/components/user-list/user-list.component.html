@@ -1,0 +1,46 @@
+<div class="container">
+  <h1>User Entries</h1>
+  <p *ngIf="loading$ | async">Loading...</p>
+  <p *ngIf="error$ | async as error" class="error">{{ error | async}}</p>
+  <div [formGroup]="editForm">
+    <table *ngIf="!(loading$ | async)">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Username</th>
+          <th>Email</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+
+        <tr *ngFor="let user of users$ | async">
+          <td>{{ user.id }}</td>
+
+          <td *ngIf="editingUser?.id !== user.id">{{ user.name }}</td>
+          <td *ngIf="editingUser?.id === user.id">
+            <input [formControl]="name" />
+          </td>
+
+          <td *ngIf="editingUser?.id !== user.id">{{ user.username }}</td>
+          <td *ngIf="editingUser?.id === user.id">
+            <input [formControl]="username" />
+          </td>
+
+          <td *ngIf="editingUser?.id !== user.id">{{ user.email }}</td>
+          <td *ngIf="editingUser?.id === user.id">
+            <input [formControl]="email" />
+          </td>
+          <td>
+            <button *ngIf="editingUser?.id === user.id" (click)="saveUser(user)">Save</button>
+            <button (click)="onEditUser(user)">
+              {{ editingUser?.id === user.id ? 'Cancel' : 'Edit' }}
+            </button>
+          </td>
+        </tr>
+
+      </tbody>
+    </table>
+  </div>
+</div>

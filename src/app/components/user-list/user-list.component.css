@@ -1,0 +1,29 @@
+.container {
+    max-width: 80%;
+    margin: auto;
+  }
+  
+  table {
+    width: 92%;
+    margin-top: 20px;
+  }
+  
+  th, td {
+    text-align: left;
+    vertical-align: middle;
+  }
+  
+  input {
+    width: 90%;
+    padding: 5px;
+  }
+  
+  button {
+    margin-right: 5px;
+  }
+  
+  .alert {
+    text-align: center;
+    font-weight: bold;
+  }
+  
